@@ -79,7 +79,7 @@ export default function PastryCard({ pastry, onClose }: PastryCardProps) {
               Recipe
             </h3>
             <div className="text-left bg-white/50 rounded-lg p-4 border border-neutral-300 flex-1 overflow-y-auto">
-              <pre className="whitespace-pre-wrap text-black text-xs leading-relaxed font-ibm-plex-mono">
+              <pre className="whitespace-pre-wrap text-black text-xs leading-relaxed font-ibm-plex-mono mb-[20px]">
                 {pastry.recipe}
               </pre>
             </div>

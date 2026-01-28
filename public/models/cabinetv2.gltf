@@ -1,0 +1,182 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v3.1.137539927)"
+    },
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2302,
+            "type": "VEC3",
+            "max": [
+                -0.8658888339996338,
+                0.7517541646957398,
+                0.561697244644165
+            ],
+            "min": [
+                -1.4733401536941529,
+                -3.3381052017211916,
+                -0.5922379493713379
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2302,
+            "type": "VEC3",
+            "max": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2302,
+            "type": "VEC4",
+            "max": [
+                1.0,
+                1.0,
+                1.0,
+                1.0
+            ],
+            "min": [
+                -1.0,
+                -1.0,
+                -1.0,
+                -1.0
+            ]
+        },
+        {
+            "bufferView": 3,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 2302,
+            "type": "VEC2",
+            "max": [
+                0.9753561615943909,
+                1.0
+            ],
+            "min": [
+                -9.437885140073377e-9,
+                5.960464477539063e-8
+            ]
+        },
+        {
+            "bufferView": 4,
+            "byteOffset": 0,
+            "componentType": 5123,
+            "count": 6936,
+            "type": "SCALAR",
+            "max": [
+                2301.0
+            ],
+            "min": [
+                0.0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 124368,
+            "uri": "cabinetv2.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 27624,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 27624,
+            "byteLength": 27624,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 55248,
+            "byteLength": 36832,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 92080,
+            "byteLength": 18416,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 110496,
+            "byteLength": 13872,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "DefaultMaterial"
+        }
+    ],
+    "meshes": [
+        {
+            "name": "BézierCurve",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 4,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1,
+                        "TANGENT": 2,
+                        "TEXCOORD_0": 3
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "BézierCurve",
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                2.5457561016082765,
+                0.039139606058597568,
+                0.01564960740506649,
+                1.0
+            ],
+            "mesh": 0
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

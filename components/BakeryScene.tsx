@@ -1,7 +1,10 @@
 'use client';
 
+import { Suspense } from 'react';
 import { Pastry } from '@/types/pastry';
 import PastryModel from './models/PastryModel';
+import CabinetModel from './models/CabinetModel';
+import CabinetModelV2 from './models/CabinetModelV2';
 import Lighting from './Lighting';
 
 interface BakerySceneProps {
@@ -13,6 +16,20 @@ export default function BakeryScene({ pastries, onPastryClick }: BakerySceneProp
   return (
     <>
       <Lighting />
+      
+      {/* Cabinet Background Asset */}
+      <Suspense fallback={null}>
+        <group position={[0, 0, -3]} scale={1} rotation={[0, 3 * Math.PI / 2, 0]}>
+          <CabinetModel />
+        </group>
+      </Suspense>
+      
+      {/* Cabinet V2 Background Asset */}
+      <Suspense fallback={null}>
+        <group position={[3, 0, -3]} scale={1} rotation={[0, 3 * Math.PI / 2, 0]}>
+          <CabinetModelV2 />
+        </group>
+      </Suspense>
       
       {/* Bakery Counter - Placeholder */}
       <mesh position={[0, -3, -1]} rotation={[-Math.PI / 2, 0, 0]}>
@@ -27,8 +44,8 @@ export default function BakeryScene({ pastries, onPastryClick }: BakerySceneProp
       </mesh>
 
       {/* Display Case Frame - Placeholder */}
-      <mesh position={[0, -1, 0.5]}>
-        <boxGeometry args={[6, 0.1, 2]} />
+      <mesh position={[0, -1.5, 0]}>
+        <boxGeometry args={[6, 0.1, 1]} />
         <meshStandardMaterial color="#555555" metalness={0.6} roughness={0.4} />
       </mesh>
 

@@ -1,7 +1,7 @@
 // Camera Configuration
 export const CAMERA_CONFIG = {
-  INITIAL_POSITION: [0, 0, 3] as [number, number, number],
-  INITIAL_FOV: 75,
+  INITIAL_POSITION: [0, 0, 2] as [number, number, number],
+  INITIAL_FOV: 60,
   NEAR_PLANE: 0.1,
   FAR_PLANE: 1000,
   
@@ -20,8 +20,11 @@ export const CAMERA_CONFIG = {
 export const SCENE_CONFIG = {
   BACKGROUND_COLOR: '#1a1a1a',
   AMBIENT_LIGHT_INTENSITY: 0.5,
-  DIRECTIONAL_LIGHT_INTENSITY: 1,
+  DIRECTIONAL_LIGHT_INTENSITY: 2,
   POINT_LIGHT_INTENSITY: 0.8,
+  FOG_COLOR: '#e6decea1',
+  FOG_NEAR: 3,
+  FOG_FAR: 10,
 } as const;
 
 // Interaction Configuration
