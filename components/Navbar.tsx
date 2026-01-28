@@ -48,7 +48,7 @@ export default function Navbar() {
           </button>
 
           {/* Bakery Name */}
-          <h1 className="absolute left-1/2 -translate-x-1/2 text-3xl font-regular text-black font-bayon" style={{ letterSpacing: '20px' }}>
+          <h1 className="absolute left-1/2 -translate-x-1/2 text-xl md:text-3xl font-regular text-black font-bayon" style={{ letterSpacing: '5px' }}>
             MIA AU CHOCOLAT
           </h1>
 
