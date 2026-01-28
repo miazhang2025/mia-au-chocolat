@@ -4,7 +4,7 @@ import { useRef, RefObject } from 'react';
 import gsap from 'gsap';
 
 interface UseMenuAnimationReturn {
-  menuRef: RefObject<HTMLDivElement>;
+  menuRef: RefObject<HTMLDivElement | null>;
   openMenu: () => void;
   closeMenu: () => void;
 }
