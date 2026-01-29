@@ -17,6 +17,14 @@ export default function Lighting() {
         intensity={SCENE_CONFIG.DIRECTIONAL_LIGHT_INTENSITY}
         color="#ffebd2"
         castShadow
+        shadow-mapSize-width={2048}
+        shadow-mapSize-height={2048}
+        shadow-camera-far={50}
+        shadow-camera-left={-10}
+        shadow-camera-right={10}
+        shadow-camera-top={10}
+        shadow-camera-bottom={-10}
+        shadow-bias={-0.0001}
       />
       
       {/* Fill light from the side - warm golden tone */}
