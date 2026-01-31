@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber';
 import { Pastry } from '@/types/pastry';
 import Camera from './Camera';
 import BakeryScene from './BakeryScene';
+import Effects from './Effects';
 import { SCENE_CONFIG } from '@/utils/constants';
 
 interface SceneProps {
@@ -21,6 +22,7 @@ export default function Scene({ pastries, onPastryClick }: SceneProps) {
       >
         <Camera />
         <BakeryScene pastries={pastries} onPastryClick={onPastryClick} />
+        <Effects />
       </Canvas>
     </div>
   );
