@@ -30,8 +30,8 @@ export default function Lighting() {
       {/* Fill light from the side - warm golden tone */}
       <directionalLight
         position={[-3, 2, 4]}
-        intensity={0.5}
-        color="#ccedfb"
+        intensity={10}
+        color="#ffffff"
       />
       
       {/* Point light to highlight the counter - warmer */}

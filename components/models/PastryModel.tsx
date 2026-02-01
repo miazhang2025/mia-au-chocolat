@@ -54,10 +54,8 @@ export default function PastryModel({ pastry, onClick }: PastryModelProps) {
       }}
     >
       {renderGeometry()}
-      <meshStandardMaterial
+      <meshToonMaterial
         color={hovered ? '#ffcc80' : '#d4a574'}
-        roughness={0.3}
-        metalness={0.2}
       />
       {hovered && (
         <Outlines
