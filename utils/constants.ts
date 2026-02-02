@@ -1,7 +1,7 @@
 // Camera Configuration
 export const CAMERA_CONFIG = {
-  INITIAL_POSITION: [0, 8, 5] as [number, number, number],
-  INITIAL_FOV: 50,
+  INITIAL_POSITION: [0, 10, 8] as [number, number, number],
+  INITIAL_FOV: 70,
   NEAR_PLANE: 0.1,
   FAR_PLANE: 1000,
   

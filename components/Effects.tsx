@@ -12,8 +12,8 @@ import CrossHatchShader from './CrossHatchEffect';
 // Custom Edge Detection Effect using postprocessing library
 class EdgeDetectionEffect extends Effect {
   constructor({
-    edgeStrength = 1.5,
-    edgeThreshold = 0.08,
+    edgeStrength = 0.1,
+    edgeThreshold = 0,
     wiggleAmount = 0.8,
     wiggleFrequency = 25.0
   } = {}) {
@@ -86,8 +86,8 @@ export default function Effects() {
   // Create edge effect
   const edgeEffect = useMemo(() => {
     const effect = new EdgeDetectionEffect({
-      edgeStrength: 1.5,
-      edgeThreshold: 0.5,
+      edgeStrength: 0.5,
+      edgeThreshold: 2,
       wiggleAmount: 0.8,
       wiggleFrequency: 35.0
     });
