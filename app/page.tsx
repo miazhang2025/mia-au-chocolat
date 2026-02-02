@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import PastryCard from '@/components/PastryCard';
@@ -13,6 +13,11 @@ const Scene = dynamic(() => import('@/components/Scene'), { ssr: false });
 export default function Home() {
   const [selectedPastry, setSelectedPastry] = useState<Pastry | null>(null);
 
+  // Scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handlePastryClick = (pastry: Pastry) => {
     setSelectedPastry(pastry);
   };
@@ -22,15 +27,27 @@ export default function Home() {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full">
       {/* Navbar */}
       <Navbar />
 
-      {/* 3D Scene */}
-      <Scene pastries={pastries} onPastryClick={handlePastryClick} />
+      {/* 3D Scene - fixed background */}
+      <div className="fixed inset-0 z-0">
+        <Scene pastries={pastries} onPastryClick={handlePastryClick} />
+      </div>
+
+      {/* Scrollable content to enable scroll-based zoom */}
+      <div className="relative z-10 pointer-events-none">
+        {/* Spacer to create scroll height (adjust height as needed) */}
+        <div style={{ height: '300vh' }}></div>
+      </div>
 
       {/* Pastry Detail Card */}
-      <PastryCard pastry={selectedPastry} onClose={handleCloseCard} />
+      <div className="fixed inset-0 z-20 pointer-events-none">
+        <div className="pointer-events-auto">
+          <PastryCard pastry={selectedPastry} onClose={handleCloseCard} />
+        </div>
+      </div>
     </div>
   );
 }
