@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import PastryCard from '@/components/PastryCard';
+import BackgroundMusic from '@/components/BackgroundMusic';
+import MusicPlayer from '@/components/MusicPlayer';
 import { pastries } from '@/data/pastries';
 import { Pastry } from '@/types/pastry';
 
@@ -12,6 +14,7 @@ const Scene = dynamic(() => import('@/components/Scene'), { ssr: false });
 
 export default function Home() {
   const [selectedPastry, setSelectedPastry] = useState<Pastry | null>(null);
+  const [isMusicPlayerOpen, setIsMusicPlayerOpen] = useState(false);
 
   // Scroll to top on page load
   useEffect(() => {
@@ -26,10 +29,18 @@ export default function Home() {
     setSelectedPastry(null);
   };
 
+  const handleOpenMusicPlayer = () => {
+    setIsMusicPlayerOpen(true);
+  };
+
+  const handleCloseMusicPlayer = () => {
+    setIsMusicPlayerOpen(false);
+  };
+
   return (
     <div className="relative w-full">
       {/* Navbar */}
-      <Navbar />
+      <Navbar onMusicClick={handleOpenMusicPlayer} />
 
       {/* 3D Scene - fixed background */}
       <div className="fixed inset-0 z-0">
@@ -48,6 +59,14 @@ export default function Home() {
           <PastryCard pastry={selectedPastry} onClose={handleCloseCard} />
         </div>
       </div>
+
+      {/* Music Player Floating Card */}
+      <MusicPlayer isOpen={isMusicPlayerOpen} onClose={handleCloseMusicPlayer} />
+
+      {/* Background Music */}
+      <BackgroundMusic src="/Aves - Winter Magic.mp3" volume={0.3} />
     </div>
   );
 }
+
+

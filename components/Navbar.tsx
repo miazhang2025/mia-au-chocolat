@@ -4,7 +4,11 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useMenuAnimation } from '@/hooks/useMenuAnimation';
 
-export default function Navbar() {
+interface NavbarProps {
+  onMusicClick?: () => void;
+}
+
+export default function Navbar({ onMusicClick }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { menuRef, openMenu, closeMenu } = useMenuAnimation();
 
@@ -20,6 +24,13 @@ export default function Navbar() {
   const handleLinkClick = () => {
     closeMenu();
     setIsMenuOpen(false);
+  };
+
+  const handleMusicClick = () => {
+    if (onMusicClick) {
+      onMusicClick();
+      handleLinkClick();
+    }
   };
 
   return (
@@ -92,6 +103,14 @@ export default function Navbar() {
           >
             All Pastries
           </Link>
+          <button
+            onClick={handleMusicClick}
+            className="py-4 text-lg text-black transition-colors border-b border-neutral-300 font-ibm-plex-mono w-full text-left"
+            onMouseEnter={(e) => e.currentTarget.style.color = '#766700'}
+            onMouseLeave={(e) => e.currentTarget.style.color = ''}
+          >
+            Music
+          </button>
           <Link
             href="/contact"
             onClick={handleLinkClick}
