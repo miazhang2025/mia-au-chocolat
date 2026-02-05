@@ -9,7 +9,8 @@ const CrossHatchShader = `
     float brightness = dot(inputColor.rgb, vec3(0.299, 0.587, 0.114));
     
     // Sample the lines texture (R=vertical, G=horizontal, B=diagonal)
-    vec2 lineUV = uv * resolution / 256.0; // Adjust scale based on texture size
+    // Use a larger scale factor to make pattern size more consistent across objects
+    vec2 lineUV = uv * resolution / 180.0; // Increased from 256.0 for larger pattern scale
     vec3 lines = texture2D(tLines, lineUV).rgb;
     
     // Invert lines so black lines create shadows
@@ -23,20 +24,20 @@ const CrossHatchShader = `
     float shadow = 0.0;
     
     // Level 0 (darkest): all three patterns
-    shadow += step(level, 0.01) * (lines.r + lines.g + lines.b)/3.0;
+    shadow += step(level, 0.01) * (lines.r + lines.g + lines.b);
     
     // Level 1: horizontal + vertical
-    shadow += step(0.01, level) * step(level, 0.5) * (lines.r + lines.g)/2.0;
+    shadow += step(0.01, level) * step(level, 0.5) * (lines.r + lines.g) / 2.0;
     
     // Level 2: horizontal only
-    shadow += step(0.5, level) * step(level, 1.0) * lines.g;
+    shadow += step(0.5, level) * step(level, 1.0) * lines.r / 3.0;
     
     // Level 3 (brightest): no shadow
     // (nothing to add)
     
     
     // Apply shadow to the color with increased intensity for visibility
-    vec3 finalColor = inputColor.rgb * (1.0-shadow*0.8);
+    vec3 finalColor = inputColor.rgb * (1.0-shadow*0.4);
     
     outputColor = vec4(finalColor, inputColor.a);
   }

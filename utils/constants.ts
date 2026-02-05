@@ -18,11 +18,11 @@ export const CAMERA_CONFIG = {
 
 // Scene Configuration
 export const SCENE_CONFIG = {
-  BACKGROUND_COLOR: '#1a1a1a',
+  BACKGROUND_COLOR: '#d0fff8',
   AMBIENT_LIGHT_INTENSITY: 0.5,
   DIRECTIONAL_LIGHT_INTENSITY: 2,
   POINT_LIGHT_INTENSITY: 0.8,
-  FOG_COLOR: '#e6decea1',
+  FOG_COLOR: '#000000a1',
   FOG_NEAR: 3,
   FOG_FAR: 10,
 } as const;
