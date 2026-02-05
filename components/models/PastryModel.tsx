@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { Outlines } from '@react-three/drei';
 import { Pastry } from '@/types/pastry';
 import { INTERACTION_CONFIG } from '@/utils/constants';
@@ -15,14 +15,82 @@ interface PastryModelProps {
 export default function PastryModel({ pastry, onClick }: PastryModelProps) {
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isReturning, setIsReturning] = useState(false);
+  const dragStart = useRef(new THREE.Vector3());
+  const objectStart = useRef(new THREE.Vector3());
+  const targetPosition = useRef(new THREE.Vector3());
+  const originalPosition = useRef<THREE.Vector3>(new THREE.Vector3(...pastry.position));
+  const hasMoved = useRef(false);
+  const { gl } = useThree();
 
-  // Gentle floating animation
+  // Smooth interpolation for all animations
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.position.y =
-        pastry.position[1] + Math.sin(state.clock.elapsedTime + pastry.position[0]) * 0.05;
+      if (isReturning) {
+        // Smoothly return to original position with spring-like effect
+        meshRef.current.position.lerp(originalPosition.current, 0.15);
+        
+        // Stop returning when close enough
+        if (meshRef.current.position.distanceTo(originalPosition.current) < 0.01) {
+          meshRef.current.position.copy(originalPosition.current);
+          setIsReturning(false);
+        }
+      } else if (isDragging) {
+        // Smooth interpolation while dragging
+        meshRef.current.position.lerp(targetPosition.current, 0.2);
+      } else {
+        // Gentle floating animation
+        meshRef.current.position.y =
+          originalPosition.current.y + Math.sin(state.clock.elapsedTime + pastry.position[0]) * 0.05;
+      }
     }
   });
+
+  const handlePointerDown = (e: any) => {
+    e.stopPropagation();
+    setIsDragging(true);
+    hasMoved.current = false;
+    
+    if (meshRef.current && e.point) {
+      dragStart.current.copy(e.point);
+      objectStart.current.copy(meshRef.current.position);
+      targetPosition.current.copy(meshRef.current.position);
+      gl.domElement.style.cursor = 'grabbing';
+    }
+  };
+
+  const handlePointerMove = (e: any) => {
+    if (isDragging && e.point) {
+      e.stopPropagation();
+      const delta = new THREE.Vector3().subVectors(e.point, dragStart.current);
+      
+      // Track if user actually dragged (moved more than a small threshold)
+      if (delta.length() > 0.1) {
+        hasMoved.current = true;
+      }
+      
+      targetPosition.current.copy(objectStart.current).add(delta);
+    }
+  };
+
+  const handlePointerUp = (e: any) => {
+    e.stopPropagation();
+    
+    if (isDragging) {
+      setIsDragging(false);
+      
+      // Only return if actually dragged, otherwise trigger onClick
+      if (hasMoved.current) {
+        setIsReturning(true);
+      } else {
+        onClick();
+      }
+      
+      gl.domElement.style.cursor = hovered ? 'grab' : 'default'
+      onClick();
+    }
+  };
 
   const renderGeometry = () => {
     switch (pastry.modelType) {
@@ -43,14 +111,18 @@ export default function PastryModel({ pastry, onClick }: PastryModelProps) {
       position={pastry.position}
       rotation={pastry.rotation || [0, 0, 0]}
       scale={pastry.scale || 1}
-      onClick={onClick}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
       onPointerOver={() => {
         setHovered(true);
-        document.body.style.cursor = 'pointer';
+        gl.domElement.style.cursor = isDragging ? 'grabbing' : 'grab';
       }}
       onPointerOut={() => {
         setHovered(false);
-        document.body.style.cursor = 'default';
+        if (!isDragging) {
+          gl.domElement.style.cursor = 'default';
+        }
       }}
     >
       {renderGeometry()}

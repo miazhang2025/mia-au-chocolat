@@ -2,6 +2,7 @@
 
 import { Pastry } from '@/types/pastry';
 import Image from 'next/image';
+import { useRef, useState } from 'react';
 
 interface PastryCardProps {
   pastry: Pastry | null;
@@ -9,6 +10,38 @@ interface PastryCardProps {
 }
 
 export default function PastryCard({ pastry, onClose }: PastryCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateXValue = ((y - centerY) / centerY) * -5;
+    const rotateYValue = ((x - centerX) / centerX) * 5;
+    
+    setRotateX(rotateXValue);
+    setRotateY(rotateYValue);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    setRotateX(0);
+    setRotateY(0);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
   if (!pastry) return null;
 
   return (
@@ -21,6 +54,10 @@ export default function PastryCard({ pastry, onClose }: PastryCardProps) {
 
       {/* Card */}
       <div 
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        onMouseEnter={handleMouseEnter}
         className="relative rounded-2xl shadow-2xl flex flex-col" 
         style={{ 
           backgroundImage: 'url(/card.svg)',
@@ -28,8 +65,11 @@ export default function PastryCard({ pastry, onClose }: PastryCardProps) {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           width: 'max(25vw, 400px)',
-          height: 'calc(max(30vw, 400px) * 4 / 3)',
-          maxHeight: '75vh'
+          height: 'calc(max(25vw, 400px) * 4.3 / 3)',
+          maxHeight: '75vh',
+          transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+          transition: isHovering ? 'transform 0.1s ease-out' : 'transform 0.5s ease-out',
+          transformStyle: 'preserve-3d',
         }}
       >
         {/* Close Button */}
@@ -69,16 +109,16 @@ export default function PastryCard({ pastry, onClose }: PastryCardProps) {
           </h2>
 
           {/* Description */}
-          <p className="text-black text-base mb-4 max-w-lg flex-shrink-0 font-ibm-plex-mono">
+          {/* <p className="text-black text-base mb-4 max-w-lg flex-shrink-0 font-ibm-plex-mono">
             {pastry.description}
-          </p>
+          </p> */}
 
           {/* Recipe */}
           <div className="w-full max-w-lg flex-1 flex flex-col min-h-0">
-            <h3 className="text-lg font-semibold text-amber-700 mb-2 flex-shrink-0 font-bayon">
+            <h3 className="text-lg font-semibold text-black mb-2 flex-shrink-0 font-bayon">
               Recipe
             </h3>
-            <div className="text-left bg-white/50 rounded-lg p-4 border border-neutral-300 flex-1 overflow-y-auto">
+            <div className="text-center rounded-lg p-4 border border-neutral-300 flex-1 overflow-y-auto">
               <pre className="whitespace-pre-wrap text-black text-xs leading-relaxed font-ibm-plex-mono mb-[20px]">
                 {pastry.recipe}
               </pre>

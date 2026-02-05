@@ -12,13 +12,7 @@ export const pastries: Pastry[] = [
 • 10g instant yeast
 • 300ml whole milk
 • 250g cold butter
-
-Instructions:
-1. Mix flour, salt, sugar, and yeast. Add milk and knead until smooth.
-2. Rest dough for 1 hour, then chill overnight.
-3. Roll out dough and laminate with cold butter through multiple folds.
-4. Shape into croissants and proof for 2 hours.
-5. Bake at 200°C (400°F) for 15-20 minutes until golden.`,
+`,
     image: '/images/mocha_mochi_donut.png',
     position: [-2, -0.5, 0],
     rotation: [0, 0.3, 0],
@@ -36,14 +30,7 @@ Instructions:
 • 75g granulated sugar
 • Food coloring
 • Ganache filling of choice
-
-Instructions:
-1. Sift almond flour and powdered sugar together.
-2. Beat egg whites to soft peaks, gradually add sugar.
-3. Fold dry ingredients into meringue until lava-like consistency.
-4. Pipe circles onto baking sheets and rest 30 minutes.
-5. Bake at 150°C (300°F) for 12-15 minutes.
-6. Cool and fill with ganache.`,
+`,
     image: '/images/mocha_mochi_donut.png',
     position: [0, -0.3, 0],
     rotation: [0, 0, 0],
@@ -64,13 +51,7 @@ Instructions:
 • 250ml milk
 • 125ml vegetable oil
 • 2 tsp vanilla extract
-
-Instructions:
-1. Mix all dry ingredients in a large bowl.
-2. Add eggs, milk, oil, and vanilla. Beat until smooth.
-3. Pour into greased cake pans.
-4. Bake at 180°C (350°F) for 30-35 minutes.
-5. Cool completely and frost with chocolate ganache.`,
+`,
     image: '/images/mocha_mochi_donut.png',
     position: [2, -0.4, 0],
     rotation: [0, -0.3, 0],
@@ -92,12 +73,7 @@ Choux Pastry:
 Filling & Glaze:
 • Pastry cream
 • Dark chocolate
-
-Instructions:
-1. Boil water, milk, and butter. Add flour and stir vigorously.
-2. Cool slightly, then beat in eggs one at a time.
-3. Pipe into éclair shapes and bake at 200°C (400°F) for 25 minutes.
-4. Fill with pastry cream and top with chocolate glaze.`,
+`,
     image: '/images/mocha_mochi_donut.png',
     position: [-1, -0.6, 0.5],
     rotation: [0, 0.2, 0],
@@ -119,12 +95,7 @@ Tart Shell:
 Filling:
 • Pastry cream
 • Fresh fruits
-
-Instructions:
-1. Mix flour, butter, and sugar until crumbly. Add egg yolk and water.
-2. Roll out and line tart pan. Blind bake at 180°C (350°F) for 15 minutes.
-3. Fill with pastry cream and arrange fresh fruits on top.
-4. Glaze with apricot jam if desired.`,
+`,
     image: '/images/mocha_mochi_donut.png',
     position: [1, -0.5, 0.5],
     rotation: [0, -0.2, 0],

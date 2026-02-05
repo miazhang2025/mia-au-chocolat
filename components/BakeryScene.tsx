@@ -27,7 +27,7 @@ function EditorScene() {
 
   if (!scene) return null;
   return (
-    <group position={[0, -2, 2]} rotation={[0,3* Math.PI / 2, 0]}>
+    <group position={[0, -2, 2.5]} rotation={[0,3* Math.PI / 2, 0]}>
       <primitive object={scene} />
     </group>
   );

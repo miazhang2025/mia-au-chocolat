@@ -1,9 +1,12 @@
 // Camera Configuration
 export const CAMERA_CONFIG = {
-  INITIAL_POSITION: [0, 10, 5] as [number, number, number],
+  INITIAL_POSITION: [0, 10, 6] as [number, number, number],
   INITIAL_FOV: 70,
   NEAR_PLANE: 0.1,
   FAR_PLANE: 1000,
+  APERTURE: 1.0,
+  FOCUS_POINT: [0, 0, 0] as [number, number, number],
+  BOKEH_SCALE: 100.0,
   
   // Mouse parallax settings
   PARALLAX_STRENGTH: 0.5,
@@ -12,7 +15,7 @@ export const CAMERA_CONFIG = {
   
   // Scroll zoom settings
   MIN_Z: 3,
-  MAX_Z: 5,
+  MAX_Z: 7,
   ZOOM_SPEED: 0.01,
 } as const;
 
@@ -22,8 +25,8 @@ export const SCENE_CONFIG = {
   AMBIENT_LIGHT_INTENSITY: 0.5,
   DIRECTIONAL_LIGHT_INTENSITY: 2,
   POINT_LIGHT_INTENSITY: 0.8,
-  FOG_COLOR: '#000000a1',
-  FOG_NEAR: 3,
+  FOG_COLOR: '#3c08aca1',
+  FOG_NEAR: 1,
   FOG_FAR: 10,
 } as const;
 
