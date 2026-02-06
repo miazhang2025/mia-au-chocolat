@@ -73,7 +73,7 @@ export default function PastryCard({ pastry, onClose }: PastryCardProps) {
         }}
       >
         {/* Close Button */}
-        <button
+        {/* <button
           onClick={onClose}
           className="absolute top-3 right-5 w-8 h-8 flex items-center justify-center bg-neutral-300 hover:bg-neutral-400 rounded-full transition-colors z-10"
           aria-label="Close"
@@ -89,7 +89,7 @@ export default function PastryCard({ pastry, onClose }: PastryCardProps) {
           >
             <path d="M6 18L18 6M6 6l12 12"></path>
           </svg>
-        </button>
+        </button> */}
 
         {/* Content - Center Aligned */}
         <div className="flex-1 p-6 flex flex-col items-center text-center overflow-hidden">

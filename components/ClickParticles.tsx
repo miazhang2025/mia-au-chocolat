@@ -35,7 +35,7 @@ export default function ClickParticles({ clickPosition, onAnimationComplete }: C
     // Create new particles
     const newParticles: Particle[] = Array.from({ length: PARTICLE_COUNT }, (_, i) => {
       const angle = (Math.PI * 2 * i) / PARTICLE_COUNT + (Math.random() - 0.5) * 0.5;
-      const speed = 2 + Math.random() * 3;
+      const speed = 5 + Math.random() * 3;
       
       return {
         id: Date.now() + i,
@@ -46,7 +46,7 @@ export default function ClickParticles({ clickPosition, onAnimationComplete }: C
         rotation: Math.random() * 360,
         rotationSpeed: (Math.random() - 0.5) * 10,
         shape: SHAPES[Math.floor(Math.random() * SHAPES.length)],
-        size: 8 + Math.random() * 12,
+        size: 30 + Math.random() * 15,
         color: COLORS[Math.floor(Math.random() * COLORS.length)],
         opacity: 1,
         life: 1,

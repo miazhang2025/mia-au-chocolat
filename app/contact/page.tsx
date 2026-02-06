@@ -50,7 +50,9 @@ export default function ContactPage() {
                 Email
               </h2>
               <p className="font-ibm-plex-mono">
-                [Your email address here]
+                <a href="mailto:miazhang2025@gmail.com" className="hover:opacity-70 transition-opacity">
+                  miazhang2025@gmail.com
+                </a>
               </p>
             </div>
 
@@ -61,14 +63,32 @@ export default function ContactPage() {
                 Social Media
               </h2>
               <div className="space-y-2 font-ibm-plex-mono">
-                <p>[Instagram link]</p>
-                <p>[LinkedIn link]</p>
-                <p>[GitHub link]</p>
+                <p>
+                  <a href="https://www.instagram.com/neck_catchers/" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+                    Instagram
+                  </a>
+                </p>
+                <p>
+                  <a href="https://www.linkedin.com/in/deyinzhang/" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+                    LinkedIn
+                  </a>
+                </p>
+                <p>
+                  <a href="https://github.com/miazhang2025" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+                    GitHub
+                  </a>
+                </p>
+                <p>
+                  <a href="https://cabbageblame.me/" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
+                    Cabbage Blame
+                  </a>
+                </p>
+                
               </div>
             </div>
           </div>
 
-          <div className={`mt-12 p-6 bg-white/50 rounded-lg border border-neutral-300 transition-all duration-1000 ${
+          {/* <div className={`mt-12 p-6 bg-white/50 rounded-lg border border-neutral-300 transition-all duration-1000 ${
             mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
           }`} style={{ transitionDelay: '500ms' }}>
             <h2 className="text-2xl font-semibold mb-4 font-bayon" style={{ color: '#907D01' }}>
@@ -79,7 +99,7 @@ export default function ContactPage() {
               primarily a creative portfolio, I'm always open to discussing
               exciting baking projects.
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

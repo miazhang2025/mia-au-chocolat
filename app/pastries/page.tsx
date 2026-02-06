@@ -52,14 +52,12 @@ export default function PastriesPage() {
               onMouseLeave={(e) => e.currentTarget.style.borderColor = ''}
             >
               <div className="aspect-video bg-neutral-200 flex items-center justify-center">
-                <span className="text-neutral-600 text-sm">{pastry.image}</span>
+                <img src={pastry.image} alt={pastry.name} className="object-contain max-h-full" />
               </div>
               <div className="p-6">
                 <h2 className="text-2xl font-semibold mb-2 font-bayon">{pastry.name}</h2>
                 <p className="mb-4 font-ibm-plex-mono">{pastry.description}</p>
-                <div className="text-sm font-ibm-plex-mono" style={{ color: '#907D01' }}>
-                  View in 3D scene →
-                </div>
+
               </div>
             </div>
           ))}

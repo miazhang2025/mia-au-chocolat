@@ -88,7 +88,7 @@ export default function Home() {
       >
         <div className="flex flex-col items-center gap-2">
           <p className="text-1xl font-regular text-white drop-shadow-lg font-ibm-plex-mono tracking-wide">
-            Scroll to Explore
+            - Scroll to Explore -
           </p>
         </div>
       </div>

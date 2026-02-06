@@ -3,15 +3,15 @@ import { Pastry } from '@/types/pastry';
 export const pastries: Pastry[] = [
   {
     id: 'croissant',
-    name: 'Classic Croissant',
-    description: 'Buttery, flaky, and perfectly golden croissant with delicate layers.',
+    name: 'Macha Mochi Donut',
+    description: 'Soft, chewy mochi donut infused with matcha flavor and coated in a sweet glaze.',
     recipe: `Ingredients:
-• 500g all-purpose flour
-• 10g salt
-• 80g sugar
-• 10g instant yeast
-• 300ml whole milk
-• 250g cold butter
+• 60g mochi flour
+• 30g milk
+• 30g oil
+• 50g chocolate
+• 2g macha powder
+• 25g butter
 `,
     image: '/images/mocha_mochi_donut.png',
     position: [-0.9, -2.3, -0.2],
@@ -22,8 +22,8 @@ export const pastries: Pastry[] = [
   },
   {
     id: 'macaron',
-    name: 'French Macaron',
-    description: 'Delicate almond meringue cookies with smooth ganache filling.',
+    name: 'Brain Mochi',
+    description: 'Unique mochi treat shaped like a brain, with a soft and chewy texture and a creamy filling.',
     recipe: `Ingredients:
 • 100g almond flour
 • 100g powdered sugar
@@ -32,7 +32,7 @@ export const pastries: Pastry[] = [
 • Food coloring
 • Ganache filling of choice
 `,
-    image: '/images/mocha_mochi_donut.png',
+    image: '/images/brain mochi.png',
     position: [-1.7, -1, 0],
     rotation: [0, 0, 0],
     scale: 0.7,
@@ -40,8 +40,8 @@ export const pastries: Pastry[] = [
   },
   {
     id: 'chocolate-cake',
-    name: 'Chocolate Cake',
-    description: 'Rich, moist chocolate cake with smooth chocolate ganache.',
+    name: 'apricot cake',
+    description: 'Moist and flavorful yogurt cake layered with homemade apricot jam.',
     recipe: `Ingredients:
 • 200g all-purpose flour
 • 200g sugar
@@ -53,7 +53,7 @@ export const pastries: Pastry[] = [
 • 125ml vegetable oil
 • 2 tsp vanilla extract
 `,
-    image: '/images/mocha_mochi_donut.png',
+    image: '/images/apricot cake.png',
     position: [-0.3, -1, 0],
     rotation: [0, -0.3, 0],
     scale: 0.6,
@@ -61,8 +61,8 @@ export const pastries: Pastry[] = [
   },
   {
     id: 'eclair',
-    name: 'Chocolate Éclair',
-    description: 'Classic French pastry with choux pastry, cream filling, and chocolate glaze.',
+    name: 'Mont Blanc',
+    description: 'Classic French pastry made with a crisp choux pastry shell filled with sweet chestnut cream and topped with a dusting of powdered sugar.',
     recipe: `Ingredients:
 Choux Pastry:
 • 125ml water
@@ -75,7 +75,7 @@ Filling & Glaze:
 • Pastry cream
 • Dark chocolate
 `,
-    image: '/images/mocha_mochi_donut.png',
+    image: '/images/Mont Blanc.png',
     position: [-1, -1, 0],
     rotation: [0, 0.2, 0],
     scale: 0.4,
