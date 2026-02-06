@@ -35,3 +35,22 @@ body {
 .font-ibm-plex-mono {
   font-family: var(--font-ibm-plex-mono);
 }
+
+/* Scroll hint animation */
+@keyframes fadeInPulse {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}

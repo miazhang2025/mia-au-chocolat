@@ -37,7 +37,7 @@ const CrossHatchShader = `
     
     
     // Apply shadow to the color with increased intensity for visibility
-    vec3 finalColor = inputColor.rgb * (1.0-shadow*0.35);
+    vec3 finalColor = inputColor.rgb * (1.0-shadow*0.3);
     
     outputColor = vec4(finalColor, inputColor.a);
   }

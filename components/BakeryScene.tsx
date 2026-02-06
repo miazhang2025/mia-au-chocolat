@@ -7,7 +7,7 @@ import PastryModel from './models/PastryModel';
 
 interface BakerySceneProps {
   pastries: Pastry[];
-  onPastryClick: (pastry: Pastry) => void;
+  onPastryClick: (pastry: Pastry, event?: MouseEvent) => void;
 }
 
 function EditorScene() {
@@ -27,7 +27,7 @@ function EditorScene() {
 
   if (!scene) return null;
   return (
-    <group position={[0, -2, 2.5]} rotation={[0,3* Math.PI / 2, 0]}>
+    <group position={[0, -2.5, 2.5]} rotation={[0,3.1* Math.PI / 2, 0]}>
       <primitive object={scene} />
     </group>
   );
@@ -46,7 +46,7 @@ export default function BakeryScene({ pastries, onPastryClick }: BakerySceneProp
         <PastryModel
           key={pastry.id}
           pastry={pastry}
-          onClick={() => onPastryClick(pastry)}
+          onClick={(event) => onPastryClick(pastry, event)}
         />
       ))}
     </>

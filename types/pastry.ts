@@ -7,7 +7,8 @@ export interface Pastry {
   position: [number, number, number];
   rotation?: [number, number, number];
   scale?: number;
-  modelType: 'cube' | 'cylinder' | 'sphere'; // Placeholder types
+  modelType: 'cube' | 'cylinder' | 'sphere' | 'gltf'; // Placeholder types
+  modelPath?: string; // Path to GLTF model file
 }
 
 export interface CameraState {

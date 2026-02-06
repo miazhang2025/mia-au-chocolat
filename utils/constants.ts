@@ -1,7 +1,7 @@
 // Camera Configuration
 export const CAMERA_CONFIG = {
-  INITIAL_POSITION: [0, 25, 5] as [number, number, number],
-  INITIAL_FOV: 70,
+  INITIAL_POSITION: [0, 15, 6.8] as [number, number, number],
+  INITIAL_FOV: 55,
   NEAR_PLANE: 0.1,
   FAR_PLANE: 1000,
   APERTURE: 1.0,
@@ -14,8 +14,8 @@ export const CAMERA_CONFIG = {
   MAX_PARALLAX_Y: 0.2,
   
   // Scroll zoom settings
-  MIN_Z: 3,
-  MAX_Z: 5,
+  MIN_Z: 5,
+  MAX_Z: 6.8,
   ZOOM_SPEED: 0.01,
 } as const;
 

@@ -48,13 +48,13 @@ export default function Navbar({ onMusicClick }: NavbarProps) {
           {/* Menu Button */}
           <button
             onClick={handleMenuToggle}
-            className="p-2 hover:bg-neutral-800 rounded-lg transition-colors"
+            className="p-2 hover:text-black rounded-lg transition-colors"
             aria-label="Toggle menu"
           >
             <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`block h-0.5 bg-white transition-transform ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-              <span className={`block h-0.5 bg-white transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-              <span className={`block h-0.5 bg-white transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+              <span className={`block h-0.5 bg-black transition-transform ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`block h-0.5 bg-black transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`block h-0.5 bg-black transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
             </div>
           </button>
 
@@ -103,14 +103,14 @@ export default function Navbar({ onMusicClick }: NavbarProps) {
           >
             All Pastries
           </Link>
-          <button
+          {/* <button
             onClick={handleMusicClick}
             className="py-4 text-lg text-black transition-colors border-b border-neutral-300 font-ibm-plex-mono w-full text-left"
             onMouseEnter={(e) => e.currentTarget.style.color = '#766700'}
             onMouseLeave={(e) => e.currentTarget.style.color = ''}
           >
             Music
-          </button>
+          </button> */}
           <Link
             href="/contact"
             onClick={handleLinkClick}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import { EffectComposer } from '@react-three/postprocessing';
 import { Effect } from 'postprocessing';
@@ -55,9 +55,10 @@ class CrossHatchEffect extends Effect {
 }
 
 export default function Effects() {
-  const { size } = useThree();
+  const { size, gl } = useThree();
+  const [isReady, setIsReady] = useState(false);
   
-  // Load lines texture
+  // Load lines texture (must be called unconditionally - Rules of Hooks)
   const linesTexture = useMemo(() => {
     const loader = new THREE.TextureLoader();
     const texture = loader.load('/lines.png', (loadedTexture) => {
@@ -71,7 +72,7 @@ export default function Effects() {
     return texture;
   }, []);
   
-  // Create cross-hatch effect
+  // Create cross-hatch effect (must be called unconditionally)
   const crossHatchEffect = useMemo(() => {
     const effect = new CrossHatchEffect(linesTexture);
     
@@ -83,7 +84,7 @@ export default function Effects() {
     return effect;
   }, [linesTexture, size.width, size.height]);
   
-  // Create edge effect
+  // Create edge effect (must be called unconditionally)
   const edgeEffect = useMemo(() => {
     const effect = new EdgeDetectionEffect({
       edgeStrength: 0.5,
@@ -105,6 +106,15 @@ export default function Effects() {
     // @ts-ignore
     edgeEffect.uniforms.get('resolution').value.set(size.width, size.height);
   }, [size.width, size.height, crossHatchEffect, edgeEffect]);
+  
+  // Wait for next frame to ensure WebGL context is fully initialized
+  useEffect(() => {
+    const timer = setTimeout(() => setIsReady(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+  
+  // Safety check - don't render effects if gl context isn't ready (AFTER all hooks)
+  if (!gl || !isReady) return null;
 
   return (
     <EffectComposer>

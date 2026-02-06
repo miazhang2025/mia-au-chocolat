@@ -18,7 +18,7 @@ export default function Camera() {
     if (cameraRef.current) {
       set({ camera: cameraRef.current });
     }
-  }, [set]);
+  }, [0,10,0]);
 
   useFrame(() => {
     if (cameraRef.current) {
