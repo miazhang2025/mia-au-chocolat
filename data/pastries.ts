@@ -14,9 +14,9 @@ export const pastries: Pastry[] = [
 • 250g cold butter
 `,
     image: '/images/mocha_mochi_donut.png',
-    position: [-2, -0.5, 0],
+    position: [-3.5, -0.4, 0],
     rotation: [0, 0.3, 0],
-    scale: 0.5,
+    scale: 0.6,
     modelType: 'cylinder',
   },
   {
@@ -32,10 +32,10 @@ export const pastries: Pastry[] = [
 • Ganache filling of choice
 `,
     image: '/images/mocha_mochi_donut.png',
-    position: [0, -0.3, 0],
+    position: [-1.7, -0.4, 0],
     rotation: [0, 0, 0],
-    scale: 0.3,
-    modelType: 'cylinder',
+    scale: 0.7,
+    modelType: 'sphere',
   },
   {
     id: 'chocolate-cake',
@@ -53,7 +53,7 @@ export const pastries: Pastry[] = [
 • 2 tsp vanilla extract
 `,
     image: '/images/mocha_mochi_donut.png',
-    position: [2, -0.4, 0],
+    position: [0, -0.4, 0],
     rotation: [0, -0.3, 0],
     scale: 0.6,
     modelType: 'cube',
@@ -75,10 +75,10 @@ Filling & Glaze:
 • Dark chocolate
 `,
     image: '/images/mocha_mochi_donut.png',
-    position: [-1, -0.6, 0.5],
+    position: [-1, -0.4, 0],
     rotation: [0, 0.2, 0],
     scale: 0.4,
-    modelType: 'cylinder',
+    modelType: 'cube',
   },
   {
     id: 'tart',
@@ -97,7 +97,7 @@ Filling:
 • Fresh fruits
 `,
     image: '/images/mocha_mochi_donut.png',
-    position: [1, -0.5, 0.5],
+    position: [-2.5, -0.4, -0.5],
     rotation: [0, -0.2, 0],
     scale: 0.5,
     modelType: 'cylinder',

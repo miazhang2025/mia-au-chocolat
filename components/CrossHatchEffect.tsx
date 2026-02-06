@@ -10,7 +10,7 @@ const CrossHatchShader = `
     
     // Sample the lines texture (R=vertical, G=horizontal, B=diagonal)
     // Use a larger scale factor to make pattern size more consistent across objects
-    vec2 lineUV = uv * resolution / 180.0; // Increased from 256.0 for larger pattern scale
+    vec2 lineUV = uv * resolution / 150.0; // Increased from 256.0 for larger pattern scale
     vec3 lines = texture2D(tLines, lineUV).rgb;
     
     // Invert lines so black lines create shadows
@@ -37,7 +37,7 @@ const CrossHatchShader = `
     
     
     // Apply shadow to the color with increased intensity for visibility
-    vec3 finalColor = inputColor.rgb * (1.0-shadow*0.4);
+    vec3 finalColor = inputColor.rgb * (1.0-shadow*0.35);
     
     outputColor = vec4(finalColor, inputColor.a);
   }
