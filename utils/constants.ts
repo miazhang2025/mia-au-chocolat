@@ -1,6 +1,6 @@
 // Camera Configuration
 export const CAMERA_CONFIG = {
-  INITIAL_POSITION: [0, 15, 6.8] as [number, number, number],
+  INITIAL_POSITION: [0, -0.1, 6] as [number, number, number],
   INITIAL_FOV: 55,
   NEAR_PLANE: 0.1,
   FAR_PLANE: 1000,
@@ -9,14 +9,23 @@ export const CAMERA_CONFIG = {
   BOKEH_SCALE: 100.0,
   
   // Mouse parallax settings
-  PARALLAX_STRENGTH: 0.5,
+  PARALLAX_STRENGTH: 0.2,
   MAX_PARALLAX_X: 0.3,
   MAX_PARALLAX_Y: 0.2,
   
-  // Scroll zoom settings
-  MIN_Z: 5,
-  MAX_Z: 6.8,
-  ZOOM_SPEED: 0.01,
+  // Scroll zoom settings (now wheel-based)
+  MIN_Z: 4,
+  MAX_Z: 6,
+  ZOOM_SPEED: 0.005,
+
+  // Pan/orbit settings (horizontal arc)
+  ROTATION_SPEED: 0.003,
+  MIN_AZIMUTH: -Math.PI / 6, // -30 degrees
+  MAX_AZIMUTH: Math.PI / 6,  // +30 degrees
+
+  // Intro animation
+  INTRO_START_POSITION: [3, 5, 14] as [number, number, number],
+  INTRO_DURATION: 2.5, // seconds
 } as const;
 
 // Scene Configuration

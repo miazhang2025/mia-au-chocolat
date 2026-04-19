@@ -22,7 +22,7 @@ interface ClickParticlesProps {
   onAnimationComplete: () => void;
 }
 
-const COLORS = ['#ffffff'];
+const COLORS = ['#ffffff', '#5C9C7F'];
 const SHAPES: Array<'circle' | 'square' | 'triangle'> = ['circle', 'square', 'triangle'];
 const PARTICLE_COUNT = 12;
 

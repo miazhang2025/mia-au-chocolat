@@ -16,24 +16,23 @@ interface PastryModelProps {
 function GLTFPastryModel({ pastry, onClick }: PastryModelProps) {
   const meshRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isReturning, setIsReturning] = useState(false);
-  const dragStart = useRef(new THREE.Vector3());
-  const objectStart = useRef(new THREE.Vector3());
-  const targetPosition = useRef(new THREE.Vector3());
   const originalPosition = useRef<THREE.Vector3>(new THREE.Vector3(...pastry.position));
-  const hasMoved = useRef(false);
   const { gl } = useThree();
   const { scene } = useGLTF(pastry.modelPath!);
 
-  // Clone scene and apply toon material immediately, store material references
+  // Clone scene and apply toon material using the model's original textures
   const { modelScene, materials } = useMemo(() => {
     const clonedScene = scene.clone();
     const mats: THREE.MeshToonMaterial[] = [];
     clonedScene.traverse((child: any) => {
       if (child.isMesh) {
+        const originalMat = child.material;
+        const map = originalMat?.map || null;
         const material = new THREE.MeshToonMaterial({
-          color: '#d4a574',
+          map: map,
+          color: map ? '#ffffff' : '#d4a574',
+          emissive: '#ffcc80',
+          emissiveIntensity: 0,
         });
         child.material = material;
         mats.push(material);
@@ -42,74 +41,28 @@ function GLTFPastryModel({ pastry, onClick }: PastryModelProps) {
     return { modelScene: clonedScene, materials: mats };
   }, [scene]);
 
-  // Update material color on hover (using cached material references)
+  // Update emissive on hover
   useEffect(() => {
-    const color = hovered ? '#ffcc80' : '#d4a574';
-    materials.forEach(material => material.color.set(color));
+    materials.forEach(material => {
+      material.emissiveIntensity = hovered ? 0.3 : 0;
+    });
   }, [materials, hovered]);
 
+  // Gentle floating animation only
   useFrame((state) => {
     if (meshRef.current) {
-      if (isReturning) {
-        meshRef.current.position.lerp(originalPosition.current, 0.15);
-        
-        if (meshRef.current.position.distanceTo(originalPosition.current) < 0.01) {
-          meshRef.current.position.copy(originalPosition.current);
-          setIsReturning(false);
-        }
-      } else if (isDragging) {
-        meshRef.current.position.lerp(targetPosition.current, 0.2);
-      } else {
-        meshRef.current.position.y =
-          originalPosition.current.y + Math.sin(state.clock.elapsedTime + pastry.position[0]) * 0.05;
-      }
+      meshRef.current.position.y =
+        originalPosition.current.y + Math.sin(state.clock.elapsedTime + pastry.position[0]) * 0.05;
     }
   });
 
-  const handlePointerDown = (e: any) => {
+  const handleClick = (e: any) => {
     e.stopPropagation();
-    setIsDragging(true);
-    hasMoved.current = false;
-    
-    if (meshRef.current && e.point) {
-      dragStart.current.copy(e.point);
-      objectStart.current.copy(meshRef.current.position);
-      targetPosition.current.copy(meshRef.current.position);
-      gl.domElement.style.cursor = 'grabbing';
-    }
-  };
-
-  const handlePointerMove = (e: any) => {
-    if (isDragging && e.point) {
-      e.stopPropagation();
-      const delta = new THREE.Vector3().subVectors(e.point, dragStart.current);
-      
-      if (delta.length() > 0.1) {
-        hasMoved.current = true;
-      }
-      
-      targetPosition.current.copy(objectStart.current).add(delta);
-    }
-  };
-
-  const handlePointerUp = (e: any) => {
-    e.stopPropagation();
-    
-    if (isDragging) {
-      setIsDragging(false);
-      
-      if (hasMoved.current) {
-        setIsReturning(true);
-      } else {
-        const mouseEvent = new MouseEvent('click', {
-          clientX: e.clientX || (e.nativeEvent && e.nativeEvent.clientX),
-          clientY: e.clientY || (e.nativeEvent && e.nativeEvent.clientY),
-        });
-        onClick(mouseEvent);
-      }
-      
-      gl.domElement.style.cursor = hovered ? 'grab' : 'default';
-    }
+    const mouseEvent = new MouseEvent('click', {
+      clientX: e.clientX || (e.nativeEvent && e.nativeEvent.clientX),
+      clientY: e.clientY || (e.nativeEvent && e.nativeEvent.clientY),
+    });
+    onClick(mouseEvent);
   };
 
   return (
@@ -118,18 +71,14 @@ function GLTFPastryModel({ pastry, onClick }: PastryModelProps) {
       position={pastry.position}
       rotation={pastry.rotation || [0, 0, 0]}
       scale={pastry.scale || 1}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
+      onClick={handleClick}
       onPointerOver={() => {
         setHovered(true);
-        gl.domElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+        gl.domElement.style.cursor = 'pointer';
       }}
       onPointerOut={() => {
         setHovered(false);
-        if (!isDragging) {
-          gl.domElement.style.cursor = 'default';
-        }
+        gl.domElement.style.cursor = 'default';
       }}
     >
       <primitive object={modelScene} />
@@ -151,85 +100,24 @@ export default function PastryModel({ pastry, onClick }: PastryModelProps) {
 
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isReturning, setIsReturning] = useState(false);
-  const dragStart = useRef(new THREE.Vector3());
-  const objectStart = useRef(new THREE.Vector3());
-  const targetPosition = useRef(new THREE.Vector3());
   const originalPosition = useRef<THREE.Vector3>(new THREE.Vector3(...pastry.position));
-  const hasMoved = useRef(false);
   const { gl } = useThree();
 
-  // Smooth interpolation for all animations
+  // Gentle floating animation only
   useFrame((state) => {
     if (meshRef.current) {
-      if (isReturning) {
-        // Smoothly return to original position with spring-like effect
-        meshRef.current.position.lerp(originalPosition.current, 0.15);
-        
-        // Stop returning when close enough
-        if (meshRef.current.position.distanceTo(originalPosition.current) < 0.01) {
-          meshRef.current.position.copy(originalPosition.current);
-          setIsReturning(false);
-        }
-      } else if (isDragging) {
-        // Smooth interpolation while dragging
-        meshRef.current.position.lerp(targetPosition.current, 0.2);
-      } else {
-        // Gentle floating animation
-        meshRef.current.position.y =
-          originalPosition.current.y + Math.sin(state.clock.elapsedTime + pastry.position[0]) * 0.05;
-      }
+      meshRef.current.position.y =
+        originalPosition.current.y + Math.sin(state.clock.elapsedTime + pastry.position[0]) * 0.05;
     }
   });
 
-  const handlePointerDown = (e: any) => {
+  const handleClick = (e: any) => {
     e.stopPropagation();
-    setIsDragging(true);
-    hasMoved.current = false;
-    
-    if (meshRef.current && e.point) {
-      dragStart.current.copy(e.point);
-      objectStart.current.copy(meshRef.current.position);
-      targetPosition.current.copy(meshRef.current.position);
-      gl.domElement.style.cursor = 'grabbing';
-    }
-  };
-
-  const handlePointerMove = (e: any) => {
-    if (isDragging && e.point) {
-      e.stopPropagation();
-      const delta = new THREE.Vector3().subVectors(e.point, dragStart.current);
-      
-      // Track if user actually dragged (moved more than a small threshold)
-      if (delta.length() > 0.1) {
-        hasMoved.current = true;
-      }
-      
-      targetPosition.current.copy(objectStart.current).add(delta);
-    }
-  };
-
-  const handlePointerUp = (e: any) => {
-    e.stopPropagation();
-    
-    if (isDragging) {
-      setIsDragging(false);
-      
-      // Only return if actually dragged, otherwise trigger onClick
-      if (hasMoved.current) {
-        setIsReturning(true);
-      } else {
-        // Create a synthetic mouse event with the screen coordinates
-        const mouseEvent = new MouseEvent('click', {
-          clientX: e.clientX || (e.nativeEvent && e.nativeEvent.clientX),
-          clientY: e.clientY || (e.nativeEvent && e.nativeEvent.clientY),
-        });
-        onClick(mouseEvent);
-      }
-      
-      gl.domElement.style.cursor = hovered ? 'grab' : 'default';
-    }
+    const mouseEvent = new MouseEvent('click', {
+      clientX: e.clientX || (e.nativeEvent && e.nativeEvent.clientX),
+      clientY: e.clientY || (e.nativeEvent && e.nativeEvent.clientY),
+    });
+    onClick(mouseEvent);
   };
 
   const renderGeometry = () => {
@@ -251,18 +139,14 @@ export default function PastryModel({ pastry, onClick }: PastryModelProps) {
       position={pastry.position}
       rotation={pastry.rotation || [0, 0, 0]}
       scale={pastry.scale || 1}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
+      onClick={handleClick}
       onPointerOver={() => {
         setHovered(true);
-        gl.domElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+        gl.domElement.style.cursor = 'pointer';
       }}
       onPointerOut={() => {
         setHovered(false);
-        if (!isDragging) {
-          gl.domElement.style.cursor = 'default';
-        }
+        gl.domElement.style.cursor = 'default';
       }}
     >
       {renderGeometry()}

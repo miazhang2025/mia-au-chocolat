@@ -60,12 +60,12 @@ export default function PastryCard({ pastry, onClose }: PastryCardProps) {
         onMouseEnter={handleMouseEnter}
         className="relative rounded-2xl shadow-2xl flex flex-col" 
         style={{ 
-          backgroundImage: 'url(/card.svg)',
+          backgroundImage: 'url(/card.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          width: 'max(25vw, 400px)',
-          height: 'calc(max(25vw, 400px) * 4.3 / 3)',
+          width: 'max(25vw, 350px)',
+          height: 'calc(max(25vw, 350px) * 4.3 / 3)',
           maxHeight: '75vh',
           transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
           transition: isHovering ? 'transform 0.1s ease-out' : 'transform 0.5s ease-out',

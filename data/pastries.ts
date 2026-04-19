@@ -14,9 +14,9 @@ export const pastries: Pastry[] = [
 • 25g butter
 `,
     image: '/images/mocha_mochi_donut.png',
-    position: [-0.9, -2.3, -0.2],
+    position: [-1.4, -1.35, 0],
     rotation: [0.5, 0, 0],
-    scale: 1,
+    scale: 0.7,
     modelType: 'gltf',
     modelPath: '/models/donut.glb',
   },
@@ -33,10 +33,11 @@ export const pastries: Pastry[] = [
 • Ganache filling of choice
 `,
     image: '/images/brain mochi.png',
-    position: [-1.7, -1, 0],
+    position: [-0.35, -1.35, 0],
     rotation: [0, 0, 0],
-    scale: 0.7,
-    modelType: 'sphere',
+    scale: 1,
+    modelType: 'gltf',
+    modelPath: '/models/mochi.glb',
   },
   {
     id: 'chocolate-cake',
@@ -54,10 +55,11 @@ export const pastries: Pastry[] = [
 • 2 tsp vanilla extract
 `,
     image: '/images/apricot cake.png',
-    position: [-0.3, -1, 0],
-    rotation: [0, -0.3, 0],
-    scale: 0.6,
-    modelType: 'cube',
+    position: [0.8, -1.15, 0],
+    rotation: [0, 0, 0],
+    scale: 1,
+    modelType: 'gltf',
+    modelPath: '/models/apricot_cake.glb',
   },
   {
     id: 'eclair',
@@ -76,14 +78,15 @@ Filling & Glaze:
 • Dark chocolate
 `,
     image: '/images/Mont Blanc.png',
-    position: [-1, -1, 0],
-    rotation: [0, 0.2, 0],
-    scale: 0.4,
-    modelType: 'cube',
+    position: [2, -1.3, 0],
+    rotation: [0, 0, 0],
+    scale: 1,
+    modelType: 'gltf',
+    modelPath: '/models/mont_blanc.glb',
   },
   {
     id: 'tart',
-    name: 'Fruit Tart',
+    name: 'Matcha Guava Cake',
     description: 'Buttery tart shell filled with vanilla cream and fresh seasonal fruits.',
     recipe: `Ingredients:
 Tart Shell:
@@ -97,10 +100,11 @@ Filling:
 • Pastry cream
 • Fresh fruits
 `,
-    image: '/images/mocha_mochi_donut.png',
-    position: [-2.6, -1, 0],
-    rotation: [0, -0.2, 0],
-    scale: 0.5,
-    modelType: 'cylinder',
+    image: '/images/matcha guava cake.png',
+    position: [3, -1.15, 0],
+    rotation: [0, 0, 0],
+    scale: 1,
+    modelType: 'gltf',
+    modelPath: '/models/matcha guava cake.glb',
   },
 ];

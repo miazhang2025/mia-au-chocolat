@@ -70,18 +70,6 @@ export default function BackgroundMusic({ src, volume = 0.3 }: BackgroundMusicPr
     };
   }, [src, volume]);
 
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        audioRef.current.play();
-        setIsPlaying(true);
-      }
-    }
-  };
-
   const toggleMute = () => {
     if (audioRef.current) {
       audioRef.current.muted = !isMuted;
@@ -91,13 +79,6 @@ export default function BackgroundMusic({ src, volume = 0.3 }: BackgroundMusicPr
 
   return (
     <div className="fixed bottom-4 right-4 z-50 flex gap-2">
-      <button
-        onClick={togglePlay}
-        className="px-3 py-2 bg-white/20 text-white rounded-lg border border-white hover:bg-white/40 transition-colors text-xl"
-        aria-label={isPlaying ? 'Pause music' : 'Play music'}
-      >
-        {isPlaying ? '⏸' : '▶'}
-      </button>
       <button
         onClick={toggleMute}
         className="px-3 py-2 bg-white/20 text-white rounded-lg border border-white hover:bg-white/40 transition-colors text-xl"
